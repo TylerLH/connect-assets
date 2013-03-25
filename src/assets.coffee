@@ -266,12 +266,14 @@ exports.cssCompilers = cssCompilers =
       libs.bootstrap or= try require 'bootstrap-stylus' catch e then (-> ->)
       libs.nib or= try require 'nib' catch e then (-> ->)
       libs.bootstrap or= try require 'bootstrap-stylus' catch e then (-> ->)
+      libs.roots or= try require 'roots-css' catch e then (-> ->)
       options = @optionsMap[sourcePath] ?=
         filename: sourcePath
       libs.stylus(source, options)
           .use(libs.bootstrap())
           .use(libs.nib())
           .use(libs.bootstrap())
+          .use(libs.roots())
           .use(libs.stylusExtends)
           .set('compress', @compress)
           .set('include css', true)
